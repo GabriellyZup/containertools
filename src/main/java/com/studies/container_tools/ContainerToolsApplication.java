@@ -5,9 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class ContainerToolsApplication {
-
 	public static void main(String[] args) {
-		SpringApplication.run(ContainerToolsApplication.class, args);
+		System.out.println("Hello from Container Tools! 🐳");
 	}
-
 }

@@ -1,0 +1,36 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Passo 1: Checkout do código
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Passo 2: Configura o Docker Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      # Passo 3: Login no Docker Hub (opcional)
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        if: github.event_name != 'pull_request'
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # Passo 4: Build e push da imagem
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: ${{ github.ref == 'refs/heads/main' }}
+          tags: |  
+            ${{ secrets.DOCKERHUB_USERNAME }}/container-tools:latest

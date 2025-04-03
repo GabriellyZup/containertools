@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.studies</groupId>
-	<artifactId>container-tools</artifactId>
+	<artifactId>containertools</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>container-tools</name>
 	<description>Projeto de estudos com Podman, Kubernetes seguindo apostilas.</description>
